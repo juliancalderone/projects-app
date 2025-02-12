@@ -1,6 +1,14 @@
-<app-layout-header />
-<main class="main-content">
-  <app-layout-sidebar />
-  <router-outlet />
-</main>
-<app-layout-footer /> 
+<div class="grid-container">
+  <header class="header">
+    <app-layout-header />
+  </header>
+  <aside class="sidebar">
+    <app-layout-sidebar />
+  </aside>
+  <main class="main-content">
+    <router-outlet />
+  </main>
+  <footer class="footer">
+    <app-layout-footer />
+  </footer>
+</div>
