@@ -1,8 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { TableModule } from 'primeng/table';
-import { ProjectService } from '../../services/project.service';
-import { Project } from '../../models/project.model';
+
+import {
+  selectProjects,
+  selectError,
+  selectLoading,
+} from '../../../../store/project.selector';
 
 @Component({
   selector: 'app-project-list',
@@ -12,13 +17,11 @@ import { Project } from '../../models/project.model';
   standalone: true,
 })
 export class ProjectListComponent {
-  projects: Project[] = [];
+  private store = inject(Store);
 
-  constructor(private projectService: ProjectService) {}
+  projects$ = this.store.select(selectProjects);
+  loading$ = this.store.select(selectLoading);
+  error$ = this.store.select(selectError);
 
-  ngOnInit() {
-    this.projectService
-      .getProjects()
-      .subscribe((projects) => (this.projects = projects));
-  }
+  ngOnInit() {}
 }

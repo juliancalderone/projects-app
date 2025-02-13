@@ -8,7 +8,7 @@ import { Project } from '../models/project.model';
 })
 export class ProjectService {
   private readonly API_URL =
-    'https://67ace5053f5a4e1477dc3ad7.mockapi.io/project';
+    'https://67ace5053f5a4e1477dc3ad7.mockapi.io/projects';
 
   private http = inject(HttpClient);
 

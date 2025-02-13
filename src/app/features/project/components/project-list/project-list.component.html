@@ -1,3 +1,19 @@
 <div class="card">
   Tabla de proyectos
 </div>
+ @if (loading$ | async) {
+  <p>Cargando...</p>
+}
+
+@if (error$ | async; as error) {
+  <p>Error: {{ error }}</p>
+}
+
+@if (projects$ | async; as projects) {
+  <ul>
+    @for (project of projects; track project.id) {
+      <li>{{ project.name }}</li>
+      <li>{{ project.description }}</li>
+    }
+  </ul>
+}

@@ -13,11 +13,16 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { provideHttpClient } from '@angular/common/http';
 import { ProjectService } from './features/project/services/project.service';
+import { provideEffects } from '@ngrx/effects';
+import { projectReducer } from './store/project.reducer';
+import { ProjectEffects } from './store/project.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideStore({ projects: projectReducer }),
+    provideEffects([ProjectEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideHttpClient(),
     ProjectService,
