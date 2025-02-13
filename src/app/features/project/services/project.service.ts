@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { Project } from '../models/project.model';
 
 @Injectable({
@@ -8,11 +8,12 @@ import { Project } from '../models/project.model';
 })
 export class ProjectService {
   private readonly API_URL =
-    'https://67ace5053f5a4e1477dc3ad7.mockapi.io/projects';
+    'https://67ace5053f5a4e1477dc3ad7.mockapi.io/project';
 
   private http = inject(HttpClient);
 
   getProjects(): Observable<Project[]> {
+    // remove delay to the response
     return this.http.get<Project[]>(this.API_URL);
   }
 
