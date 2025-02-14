@@ -1,1 +1,43 @@
-<p>project-form works!</p>
+<div class="project-form-container">
+    <h3>Nuevo Proyecto</h3>
+    <form [formGroup]="projectForm" class="project-form" (ngSubmit)="onSubmit()">
+        <!-- Name field -->
+        <div class="form-group">
+            <p-floatlabel>
+                <input id="name" type="text" pInputText formControlName="name" class="form-control"
+                    [class.is-invalid]="isFieldInvalid('name')" />
+                <label for="over_label">Nombre:</label>
+            </p-floatlabel>
+            @if (isFieldInvalid('name')) {
+            <div class="invalid-feedback">
+                @if (projectForm.get('name')?.errors?.['required']) {
+                El nombre del proyecto es requerido.
+                }
+                @if (projectForm.get('name')?.errors?.['minlength']) {
+                El nombre del proyecto debe tener al menos 3 caracteres.
+                }
+            </div>
+            }
+        </div>
+        <!-- Description field -->
+        <div class="form-group">
+            <p-floatlabel>
+                <textarea rows="5" cols="30" class="form-control"  pTextarea formControlName="description"></textarea>
+                <label for="over_label">Descripción:</label>
+            </p-floatlabel>
+        </div>
+        <!-- Status field -->
+        <div class="form-group">
+            <label for="status">Estado:</label>
+            <div *ngFor="let state of statuses" class="field-checkbox">
+                <p-radiobutton [inputId]="state.name" [value]="state.value" formControlName="is_active" />
+                <label [for]="state.name" class="ml-2">{{ state.name }}</label>
+            </div>
+        </div>
+        <p-button 
+            label="Guardar" 
+            type="submit" 
+            [disabled]="!projectForm.valid"
+        />
+    </form>
+</div>

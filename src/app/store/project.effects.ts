@@ -5,6 +5,9 @@ import {
   loadProjects,
   loadProjectsSuccess,
   loadProjectsFailure,
+  addProject,
+  addProjectSuccess,
+  addProjectFailure,
 } from './project.action';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -25,6 +28,18 @@ export class ProjectEffects {
           )
         );
       })
+    );
+  });
+
+  addProject$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(addProject),
+      switchMap(({ project }) =>
+        this.projectService.createProject(project).pipe(
+          map((project) => addProjectSuccess({ project })),
+          catchError((error) => of(addProjectFailure({ error: error.message })))
+        )
+      )
     );
   });
 }

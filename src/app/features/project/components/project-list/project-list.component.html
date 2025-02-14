@@ -18,6 +18,7 @@
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 20]"
         [globalFilterFields]="['name']"
+        [responsiveLayout]="'scroll'"
       > 
       <ng-template #caption>
         <div class="flex">
@@ -48,7 +49,12 @@
                 <td>{{ project.id }}</td>
                 <td>{{ project.name }}</td>
                 <td>{{ project.description }}</td>
-                <td>{{ project.isActive ? 'Active' : 'Inactive' }}</td>
+                <td>
+                  <p-badge 
+                    [value]="project.isActive ? 'Activo' : 'Inactivo'" 
+                    [severity]="statusProjectClass(project)"
+                  />
+                </td>
                 <td>
                   <button
                     pButton
