@@ -1,4 +1,5 @@
 <div class="project-form-container">
+    <p-toast />
     <h3>{{ isEdit ? 'Editar Proyecto' : 'Nuevo Proyecto' }}</h3>
     <form [formGroup]="projectForm" class="project-form" (ngSubmit)="onSubmit()">
         <!-- Name field -->
@@ -30,7 +31,7 @@
         <div class="form-group">
             <label for="status">Estado:</label>
             <div *ngFor="let state of statuses" class="field-checkbox">
-                <p-radiobutton [inputId]="state.name" [value]="state.value" formControlName="is_active" />
+                <p-radiobutton [inputId]="state.name" [value]="state.value" formControlName="isActive" />
                 <label [for]="state.name" class="ml-2">{{ state.name }}</label>
             </div>
         </div>

@@ -19,9 +19,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { CommonModule } from '@angular/common';
 import { Project } from '../../models/project.model';
 import { selectProjectById } from '../../../../store/project.selector';
-import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-
+import { RippleModule } from 'primeng/ripple';
+import { ToastModule } from 'primeng/toast';
 export interface ProjectStatus {
   value: boolean;
   name: string;
@@ -38,8 +38,10 @@ export interface ProjectStatus {
     TextareaModule,
     RadioButtonModule,
     CommonModule,
+    RippleModule,
+    ToastModule,
   ],
-  providers: [],
+  providers: [MessageService],
   templateUrl: './project-form.component.html',
   styleUrl: './project-form.component.scss',
   standalone: true,
@@ -57,7 +59,8 @@ export class ProjectFormComponent implements OnInit {
     private fb: FormBuilder,
     private store: Store,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
     this.initForm();
   }
@@ -66,7 +69,7 @@ export class ProjectFormComponent implements OnInit {
     this.projectForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', Validators.minLength(5)],
-      is_active: [true, Validators.required],
+      isActive: [true, Validators.required],
     });
   }
 
@@ -112,7 +115,16 @@ export class ProjectFormComponent implements OnInit {
       this.isEdit ? updateProject({ project }) : addProject({ project })
     );
 
-    //this.router.navigate(['/projects']);
+    this.router.navigate(['/projects']);
+
+    /*     this.messageService.add({
+      severity: 'success',
+      summary: 'Éxito',
+      detail: this.isEdit
+        ? 'Proyecto actualizado correctamente'
+        : 'Proyecto creado correctamente',
+      life: 3000,
+    }); */
   }
 
   private generateProjectId(): string {
