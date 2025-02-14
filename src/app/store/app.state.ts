@@ -1,4 +1,4 @@
-import { ProjectState } from './project.state';
+import { ProjectState } from './project.reducer';
 
 export interface AppState {
   projects: ProjectState;

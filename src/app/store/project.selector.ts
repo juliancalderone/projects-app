@@ -17,3 +17,8 @@ export const selectError = createSelector(
   selectProjectState,
   (state: ProjectState) => state.error
 );
+
+export const selectProjectById = (id: string) =>
+  createSelector(selectProjects, (projects) =>
+    projects?.find((project) => project.id === id)
+  );

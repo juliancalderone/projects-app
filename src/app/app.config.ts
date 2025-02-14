@@ -16,6 +16,7 @@ import { ProjectService } from './features/project/services/project.service';
 import { provideEffects } from '@ngrx/effects';
 import { projectReducer } from './store/project.reducer';
 import { ProjectEffects } from './store/project.effects';
+import { MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,5 +33,6 @@ export const appConfig: ApplicationConfig = {
       },
     }),
     provideAnimationsAsync(),
+    MessageService,
   ],
 };

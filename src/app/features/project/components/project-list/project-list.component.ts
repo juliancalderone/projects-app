@@ -15,6 +15,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { Table } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 import { Project } from '../../models/project.model';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-project-list',
   imports: [
@@ -25,6 +26,7 @@ import { Project } from '../../models/project.model';
     IconFieldModule,
     InputIconModule,
     BadgeModule,
+    RouterModule,
   ],
   templateUrl: './project-list.component.html',
   styleUrl: './project-list.component.scss',
@@ -50,11 +52,4 @@ export class ProjectListComponent {
   statusProjectClass(project: Project) {
     return project.isActive ? 'success' : 'danger';
   }
-
-  /* 
-      stockSeverity(product: Product) {
-        if (product.quantity === 0) return 'danger';
-        else if (product.quantity > 0 && product.quantity < 10) return 'warn';
-        else return 'success';
-    } */
 }
