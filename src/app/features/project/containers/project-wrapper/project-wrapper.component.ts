@@ -21,10 +21,4 @@ import { loadProjects } from '../../../../store/project.action';
     `,
   ],
 })
-export class ProjectWrapperComponent implements OnInit {
-  constructor(private store: Store) {}
-
-  ngOnInit() {
-    this.store.dispatch(loadProjects());
-  }
-}
+export class ProjectWrapperComponent {}

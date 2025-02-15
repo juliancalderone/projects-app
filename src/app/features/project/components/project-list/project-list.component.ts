@@ -16,6 +16,8 @@ import { Table } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 import { Project } from '../../models/project.model';
 import { RouterModule } from '@angular/router';
+import { loadProjects } from '../../../../store/project.action';
+
 @Component({
   selector: 'app-project-list',
   imports: [
@@ -29,7 +31,6 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   templateUrl: './project-list.component.html',
-  styleUrl: './project-list.component.scss',
   standalone: true,
 })
 export class ProjectListComponent {
@@ -40,8 +41,6 @@ export class ProjectListComponent {
   loading$ = this.store.select(selectLoading);
   error$ = this.store.select(selectError);
 
-  ngOnInit() {}
-
   onSearch(event: Event) {
     this.tableRef.filterGlobal(
       (event.target as HTMLInputElement).value,
@@ -51,5 +50,9 @@ export class ProjectListComponent {
 
   statusProjectClass(project: Project) {
     return project.isActive ? 'success' : 'danger';
+  }
+
+  ngOnInit() {
+    this.store.dispatch(loadProjects());
   }
 }
