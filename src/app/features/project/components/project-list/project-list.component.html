@@ -1,7 +1,3 @@
-<div *ngIf="loading$ | async">
-  <p>Cargando...</p>
-</div>
-
 <div *ngIf="error$ | async as error">
   <p>Error: {{ error }}</p>
 </div>
@@ -10,15 +6,12 @@
   <div class="card">
     <p-table
         #tableRef 
-        [value]="projects" 
-        [tableStyle]="{ 
-          'min-width': '50rem',
-        }"
+        [value]="projects"
         [paginator]="true"
         [rows]="5"
         [rowsPerPageOptions]="[5, 10, 20]"
         [globalFilterFields]="['name']"
-        [responsiveLayout]="'scroll'"
+        [loading]="loading$ | async"
       > 
       <ng-template #caption>
         <div class="flex">

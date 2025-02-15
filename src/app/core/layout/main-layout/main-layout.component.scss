@@ -28,11 +28,13 @@
   
   @media (max-width: 768px) {
     .grid-container {
+      height: 100%;
       grid-template-areas:
         "header"
         "sidebar"
         "main"
         "footer";
       grid-template-columns: 1fr;
+      height: 100%;
   }
 }

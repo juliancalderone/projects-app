@@ -5,11 +5,11 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { addProject, updateProject } from '../../../../store/project.action';
 
-import { filter, take, map } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
@@ -40,6 +40,7 @@ export interface ProjectStatus {
     CommonModule,
     RippleModule,
     ToastModule,
+    RouterLink,
   ],
   providers: [MessageService],
   templateUrl: './project-form.component.html',
@@ -79,11 +80,7 @@ export class ProjectFormComponent implements OnInit {
     if (projectId) {
       this.isEdit = true;
       this.store
-        .pipe(
-          select(selectProjectById(projectId)),
-          filter((project) => !!project),
-          take(1)
-        )
+        .pipe(select(selectProjectById(projectId)), take(1))
         .subscribe((project) => {
           if (project) {
             this.projectForm.patchValue(project);
@@ -115,16 +112,18 @@ export class ProjectFormComponent implements OnInit {
       this.isEdit ? updateProject({ project }) : addProject({ project })
     );
 
-    this.router.navigate(['/projects']);
-
-    /*     this.messageService.add({
+    this.messageService.add({
       severity: 'success',
       summary: 'Éxito',
       detail: this.isEdit
         ? 'Proyecto actualizado correctamente'
         : 'Proyecto creado correctamente',
-      life: 3000,
-    }); */
+      life: 2000,
+    });
+
+    setTimeout(() => {
+      this.router.navigate(['/projects']);
+    }, 2000);
   }
 
   private generateProjectId(): string {

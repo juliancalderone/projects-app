@@ -35,10 +35,18 @@
                 <label [for]="state.name" class="ml-2">{{ state.name }}</label>
             </div>
         </div>
-        <p-button 
-            label="Guardar" 
-            type="submit" 
-            [disabled]="!projectForm.valid"
-        />
+        <div class="buttons-wrapper">
+            <p-button
+                label="Cancelar"
+                type="button"
+                [routerLink]="['/projects']"
+                severity="secondary"
+            />
+            <p-button
+                label="Guardar"
+                type="submit"
+                [disabled]="!projectForm.valid"
+            />
+        </div>
     </form>
 </div>

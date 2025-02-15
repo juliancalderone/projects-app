@@ -7,25 +7,21 @@ import { Project } from '../models/project.model';
   providedIn: 'root',
 })
 export class ProjectService {
-  private readonly API_URL =
-    'https://67ace5053f5a4e1477dc3ad7.mockapi.io/project';
-
   private http = inject(HttpClient);
 
   getProjects(): Observable<Project[]> {
-    // remove delay to the response
-    return this.http.get<Project[]>(this.API_URL);
+    return this.http.get<Project[]>('project');
   }
 
   getProjectById(id: string): Observable<Project> {
-    return this.http.get<Project>(`${this.API_URL}/${id}`);
+    return this.http.get<Project>(`project/${id}`);
   }
 
   createProject(project: Project): Observable<Project> {
-    return this.http.post<Project>(this.API_URL, project);
+    return this.http.post<Project>('project/', project);
   }
 
   updateProject(id: string, project: Project): Observable<Project> {
-    return this.http.put<Project>(`${this.API_URL}/${id}`, project);
+    return this.http.put<Project>(`project/${id}`, project);
   }
 }

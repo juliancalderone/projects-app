@@ -12,6 +12,14 @@ import { loadProjects } from '../../../../store/project.action';
       <app-project-list />
     </div>
   `,
+  styles: [
+    `
+      .project-container {
+        padding: 0;
+        max-width: 95%;
+      }
+    `,
+  ],
 })
 export class ProjectWrapperComponent implements OnInit {
   constructor(private store: Store) {}
