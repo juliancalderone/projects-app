@@ -21,6 +21,17 @@ For data that will be shared throughout the application, the redux pattern is
 used with the NgRx library. All the information on this library can be found at
 the following link: https://ngrx.io/
 
+## Mock server
+
+I'm using [MockAPI](https://mockapi.io/) to simulate a backend server for development and testing purposes. 
+
+### API Endpoints
+
+- **GET /project**: Retrieve a list of projects.
+- **GET /project/:id**: Retrieve a specific project by ID.
+- **POST /project**: Create a new project.
+- **PUT /project/:id**: Update an existing project by ID.
+
 ## Development server
 
 To start a local development server, run:
