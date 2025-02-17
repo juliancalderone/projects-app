@@ -2,13 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { delay, Observable, share, shareReplay } from 'rxjs';
 import { Project } from '../models/project.model';
-import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectService {
-  private apiUrl = `${environment.apiUrl}/projects`;
   private http = inject(HttpClient);
 
   getProjects(): Observable<Project[]> {
@@ -16,7 +14,7 @@ export class ProjectService {
   }
 
   getProjectById(id: string): Observable<Project> {
-    return this.http.get<Project>(`${this.apiUrl}/${id}`);
+    return this.http.get<Project>(`project/${id}`);
   }
 
   createProject(project: Project): Observable<Project> {
