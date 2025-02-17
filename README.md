@@ -9,7 +9,7 @@ The project is deployed and can be accessed at the following URL: [ProjectsApp D
 ## Architecture
 
 ![Architecture Diagram](map.png)
-In this project I follow the structure recommended by Gerome Grignon (Angular specialist) (https://www.gerome.dev/blog/standalone-angular-folder-structure/)
+In this project I follow the structure recommended by [Gerome Grignon](https://www.gerome.dev/blog/standalone-angular-folder-structure/)
 
 ## UI
 
