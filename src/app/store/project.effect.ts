@@ -53,9 +53,11 @@ export class ProjectEffects {
       switchMap(({ project }) =>
         this.projectService.updateProject(project.id, project).pipe(
           map((project) => updateProjectSuccess({ project })),
-          catchError((error) =>
-            of(updateProjectFailure({ error: error.message }))
-          )
+          catchError((error) => {
+            // TODO: improve error handling
+            alert(error.message);
+            return of(updateProjectFailure({ error: error.message }));
+          })
         )
       )
     );

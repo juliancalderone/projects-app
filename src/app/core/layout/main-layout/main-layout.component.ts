@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -12,4 +12,8 @@ import { NgIf } from '@angular/common';
   imports: [RouterOutlet, HeaderComponent, FooterComponent, SidebarComponent],
   styleUrls: ['./main-layout.component.scss'],
 })
-export class MainLayoutComponent {}
+export class MainLayoutComponent {
+  private router = inject(Router);
+
+  ngOnInit() {}
+}

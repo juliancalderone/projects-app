@@ -112,6 +112,10 @@ export class ProjectFormComponent implements OnInit {
       this.isEdit ? updateProject({ project }) : addProject({ project })
     );
 
+    this.showSuccessMessage();
+  }
+
+  showSuccessMessage() {
     this.messageService.add({
       severity: 'success',
       summary: 'Éxito',
@@ -120,7 +124,6 @@ export class ProjectFormComponent implements OnInit {
         : 'Proyecto creado correctamente',
       life: 2000,
     });
-
     setTimeout(() => {
       this.router.navigate(['/projects']);
     }, 2000);
