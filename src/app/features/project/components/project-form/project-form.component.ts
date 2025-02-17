@@ -60,8 +60,7 @@ export class ProjectFormComponent implements OnInit {
     private fb: FormBuilder,
     private store: Store,
     private route: ActivatedRoute,
-    private router: Router,
-    private messageService: MessageService
+    private router: Router
   ) {
     this.initForm();
   }
@@ -112,21 +111,7 @@ export class ProjectFormComponent implements OnInit {
       this.isEdit ? updateProject({ project }) : addProject({ project })
     );
 
-    this.showSuccessMessage();
-  }
-
-  showSuccessMessage() {
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Éxito',
-      detail: this.isEdit
-        ? 'Proyecto actualizado correctamente'
-        : 'Proyecto creado correctamente',
-      life: 2000,
-    });
-    setTimeout(() => {
-      this.router.navigate(['/projects']);
-    }, 2000);
+    this.router.navigate(['/projects']);
   }
 
   private generateProjectId(): string {

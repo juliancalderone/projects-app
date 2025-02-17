@@ -15,11 +15,22 @@ import {
 } from './project.action';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Injectable()
 export class ProjectEffects {
   actions$ = inject(Actions);
   projectService = inject(ProjectService);
+  messageService = inject(MessageService);
+
+  private showSuccessMessage(message: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Éxito',
+      detail: message,
+      life: 3000,
+    });
+  }
 
   loadProjects$ = createEffect(() => {
     return this.actions$.pipe(
@@ -40,7 +51,10 @@ export class ProjectEffects {
       ofType(addProject),
       switchMap(({ project }) =>
         this.projectService.createProject(project).pipe(
-          map((project) => addProjectSuccess({ project })),
+          map((project) => {
+            this.showSuccessMessage('Proyecto creado exitosamente');
+            return addProjectSuccess({ project });
+          }),
           catchError((error) => of(addProjectFailure({ error: error.message })))
         )
       )
@@ -52,12 +66,13 @@ export class ProjectEffects {
       ofType(updateProject),
       switchMap(({ project }) =>
         this.projectService.updateProject(project.id, project).pipe(
-          map((project) => updateProjectSuccess({ project })),
-          catchError((error) => {
-            // TODO: improve error handling
-            alert(error.message);
-            return of(updateProjectFailure({ error: error.message }));
-          })
+          map((project) => {
+            this.showSuccessMessage('Proyecto actualizado exitosamente');
+            return updateProjectSuccess({ project });
+          }),
+          catchError((error) =>
+            of(updateProjectFailure({ error: error.message }))
+          )
         )
       )
     );
