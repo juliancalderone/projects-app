@@ -2,6 +2,25 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
 
+## Deployment
+
+The project is deployed and can be accessed at the following URL: [ProjectsApp Deployment](https://projects-app-sooty.vercel.app/). This deployment ensures that the application is available for users to interact with and test its features in a live environment.
+
+## Architecture
+
+![Architecture Diagram](map.png)
+In this project I follow the structure recommended by Gerome Grignon (Angular specialist) (https://www.gerome.dev/blog/standalone-angular-folder-structure/)
+
+## UI
+
+This project utilizes [PrimeNG](https://primeng.org/) for its UI components. PrimeNG offers a comprehensive collection of open-source UI components specifically designed for Angular applications, facilitating the creation of a responsive and visually appealing user interface.
+
+## NgRx
+
+For data that will be shared throughout the application, the redux pattern is
+used with the NgRx library. All the information on this library can be found at
+the following link: https://ngrx.io/
+
 ## Development server
 
 To start a local development server, run:

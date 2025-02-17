@@ -94,4 +94,12 @@ describe('ProjectFormComponent', () => {
     expect(store.dispatch).not.toHaveBeenCalled();
     expect(router.navigate).not.toHaveBeenCalled();
   });
+
+  it('should generate a string id between 0 and 999', () => {
+    const generateId = (component as any).generateProjectId();
+
+    expect(typeof generateId).toBe('string');
+    expect(parseInt(generateId)).toBeGreaterThanOrEqual(0);
+    expect(parseInt(generateId)).toBeLessThan(1000);
+  });
 });

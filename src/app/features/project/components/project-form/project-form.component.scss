@@ -30,13 +30,13 @@
             }
         }
         .buttons-wrapper {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
             width: 50%;
             @media (max-width: 768px) {
                 width: 100%;
             }
-            display: flex;
-            gap: 1rem;
-            justify-content: space-between;
         }
     }
 }

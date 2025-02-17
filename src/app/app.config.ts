@@ -16,7 +16,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ProjectService } from './features/project/services/project.service';
 import { provideEffects } from '@ngrx/effects';
 import { projectReducer } from './store/project.reducer';
-import { ProjectEffects } from './store/project.effects';
+import { ProjectEffects } from './store/project.effect';
 import { MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {

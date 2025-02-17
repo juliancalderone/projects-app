@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { delay, Observable } from 'rxjs';
+import { delay, Observable, share, shareReplay } from 'rxjs';
 import { Project } from '../models/project.model';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class ProjectService {
   private http = inject(HttpClient);
 
   getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>('project');
+    return this.http.get<Project[]>('project').pipe(shareReplay(1));
   }
 
   getProjectById(id: string): Observable<Project> {
