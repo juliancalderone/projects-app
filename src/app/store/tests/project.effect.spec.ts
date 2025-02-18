@@ -15,6 +15,7 @@ import {
   updateProjectFailure,
 } from '../project.action';
 import { Project } from '../../features/project/models/project.model';
+import { MessageService } from 'primeng/api';
 
 describe('ProjectEffects', () => {
   let actions$: Observable<any>;
@@ -32,6 +33,7 @@ describe('ProjectEffects', () => {
         ProjectEffects,
         provideMockActions(() => actions$),
         { provide: ProjectService, useValue: spy },
+        MessageService,
       ],
     });
 

@@ -29,10 +29,12 @@
         <!-- Status field -->
         <div class="form-group">
             <label for="status">Estado:</label>
-            <div *ngFor="let state of statuses" class="field-checkbox">
-                <p-radiobutton [inputId]="state.name" [value]="state.value" formControlName="isActive" />
-                <label [for]="state.name" class="ml-2">{{ state.name }}</label>
-            </div>
+            @for (state of statuses; track state.name) {
+                <div class="field-checkbox">
+                    <p-radiobutton [inputId]="state.name" [value]="state.value" formControlName="isActive" />
+                    <label [for]="state.name" class="ml-2">{{ state.name }}</label>
+                </div>
+            }
         </div>
         <div class="buttons-wrapper">
             <p-button

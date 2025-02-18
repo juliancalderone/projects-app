@@ -1,8 +1,8 @@
-<div *ngIf="error$ | async as error">
+@if (error$ | async; as error) {
   <p>Error: {{ error }}</p>
-</div>
+}
 
-<div *ngIf="projects$ | async as projects">
+@if (projects$ | async; as projects) {
   <div class="card">
     <p-table
         #tableRef 
@@ -58,15 +58,15 @@
                     rounded
                     severity="secondary"
                     [routerLink]="['/projects', 'edit', project.id]"
-                ></button>
+                  ></button>
                 </td>
             </tr>
         </ng-template>
         <ng-template #emptymessage>
-          <tr>
-              <td colspan="5">No se encontraron proyectos</td>
-          </tr>
-      </ng-template>
+            <tr>
+                <td colspan="5">No se encontraron proyectos</td>
+            </tr>
+        </ng-template>
     </p-table>
   </div>
-</div>
+}
